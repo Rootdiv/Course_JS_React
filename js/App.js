@@ -108,13 +108,13 @@ const Footer = () => (
 );
 
 const RenderJSX = () => (
-  <div>
+  <React.Fragment>
     <Header />
     <Main />
     <Features />
     <Contact />
     <Footer />
-  </div>
+  </React.Fragment>
 );
 
 ReactDOM.render(<RenderJSX />, document.getElementById('root'));
