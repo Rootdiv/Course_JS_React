@@ -5,6 +5,7 @@ import signImg from '../image/sign.svg';
 
 const NavBarStyled = styled.header`
   position: fixed;
+  z-index: 100;
   left: 0px;
   top: 0px;
   height: 80px;
@@ -13,7 +14,7 @@ const NavBarStyled = styled.header`
   justify-content: space-between;
   padding: 15px;
   background-color: #299B01;
-  color: #fff
+  color: #fff;
 `;
 
 const Logo = styled.div`
