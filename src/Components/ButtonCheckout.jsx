@@ -4,7 +4,6 @@ export const ButtonCheckout = styled.button`
   display: block;
   margin: 0 auto;
   width: 250px;
-  cursor: pointer;
   color: #ffffff;
   padding: 20px 80px;
   font-size: 21px;
