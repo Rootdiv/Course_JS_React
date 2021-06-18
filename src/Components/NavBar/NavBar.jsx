@@ -41,7 +41,7 @@ export const NavBar = () => (
   <NavBarStyled>
     <Logo>
       <ImgLogo src={logoImg} alt="лого" />
-      <H1>MrDonald's</H1>
+      <H1>MrDonald&apos;s</H1>
     </Logo>
     <Login>
       <img src={signImg} alt="войти" />

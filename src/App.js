@@ -10,7 +10,7 @@ import { useOrders } from './Components/Hooks/useOrders';
 function App() {
 
   const openItem = useOpenItem();
-  const orders = useOrders()
+  const orders = useOrders();
 
   return (
     <>
