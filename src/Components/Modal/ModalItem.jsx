@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ButtonCheckout } from './ButtonCheckout';
+import { ButtonCheckout } from '../Style/ButtonCheckout';
 
 const Overlay = styled.div`
   position: fixed;
@@ -46,13 +46,22 @@ const Banner = styled.div`
   background-position: center;
 `;
 
-export const ModalItem = ({ openItem, setOpenItem }) => {
-  const closeModal = (event) => {
+export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
+  const closeModal = event => {
     if (event.target.id === 'overlay') {
       setOpenItem(null);
     }
   }
-  if (!openItem) return null;
+
+  const order = {
+    ...openItem
+  };
+
+  const addToOrder = () => {
+    setOrders([...orders, order])
+    setOpenItem(null);
+  }
+
   return (
     <Overlay id="overlay" onClick={closeModal}>
       <Modal>
@@ -63,7 +72,7 @@ export const ModalItem = ({ openItem, setOpenItem }) => {
             <div>{openItem.price.toLocaleString('ru-RU', { style: 'currency', currency: 'RUB' })}</div>
           </HeaderContent>
         </Content>
-        <ButtonCheckout>Добавить</ButtonCheckout>
+        <ButtonCheckout onClick={addToOrder}>Добавить</ButtonCheckout>
       </Modal>
     </Overlay>
   )
