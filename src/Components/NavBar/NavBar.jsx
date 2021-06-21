@@ -14,7 +14,7 @@ const NavBarStyled = styled.header`
   justify-content: space-between;
   padding: 15px;
   background-color: #299B01;
-  color: #fff;
+  color: #ffffff;
 `;
 
 const Logo = styled.div`
@@ -33,6 +33,7 @@ const ImgLogo = styled.img`
 
 const Login = styled.button`
   color: #ffffff;
+  font-size: 14px;
   border: none;
   background: transparent;
 `;
@@ -40,11 +41,11 @@ const Login = styled.button`
 export const NavBar = () => (
   <NavBarStyled>
     <Logo>
-      <ImgLogo src={logoImg} alt="лого" />
+      <ImgLogo src={logoImg} alt="Лого" />
       <H1>MrDonald&apos;s</H1>
     </Logo>
     <Login>
-      <img src={signImg} alt="войти" />
+      <img src={signImg} alt="Пользователь" />
       <p>Войти</p>
     </Login>
   </NavBarStyled>
