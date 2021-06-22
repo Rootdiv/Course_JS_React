@@ -5,6 +5,7 @@ import { totalPriceItems, formatCurrency } from '../Functions/secondaryFunction'
 
 const OrderItemStyled = styled.li`
   display: flex;
+  flex-direction: column;
   margin: 15px 0;
 `;
 
@@ -30,11 +31,21 @@ const TrashButton = styled.button`
   background-repeat: no-repeat;
 `;
 
+const ItemTopping = styled.div`
+  font-size: 14px;
+  color: #9A9A9A;
+`;
+
 export const OrderListItem = ({ order }) => (
   <OrderItemStyled>
-    <ItemName>{order.name}</ItemName>
-    <span>{order.count}</span>
-    <ItemPrice>{formatCurrency(totalPriceItems(order))}</ItemPrice>
-    <TrashButton />
+    <div style={{ display: 'flex' }}>
+      <ItemName>{order.name}</ItemName>
+      <span>{order.count}</span>
+      <ItemPrice>{formatCurrency(totalPriceItems(order))}</ItemPrice>
+      <TrashButton />
+    </div>
+    <ItemTopping>
+      {order.topping.map(order => order.checked && <span>{order.name} </span>)}
+    </ItemTopping>
   </OrderItemStyled>
 );
