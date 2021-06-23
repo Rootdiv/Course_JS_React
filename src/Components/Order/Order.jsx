@@ -46,16 +46,17 @@ const EmptyList = styled.p`
   text-align: center;
 `;
 
-export const Order = ({ orders }) => {
+export const Order = ({ orders, setOrders }) => {
   const total = orders.reduce((result, order) => totalPriceItems(order) + result, 0);
   const totalCounter = orders.reduce((result, order) => order.count + result, 0);
+  const deleteItem = order => setOrders(orders.filter(item => item !== order));
   return (
     <OrderStyled>
       <OrderTitle>ВАШ ЗАКАЗ</OrderTitle>
       <OrderContent>
         {orders.length ?
           <OrderList>
-            {orders.map(order => <OrderListItem key={order.id} order={order} />)}
+            {orders.map(order => <OrderListItem key={order.id} deleteItem={deleteItem} order={order} />)}
           </OrderList> :
           <EmptyList>Список заказов пуст</EmptyList>}
       </OrderContent>

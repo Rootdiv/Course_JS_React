@@ -1,15 +1,15 @@
 import React from 'react';
 import { CheckoutStyleWrap, CheckoutStyleLabel, CheckoutStyleInput } from '../Style/CheckoutStyle';
 
-export function Toppings({ toppings, checkToppings }) {
+export function Choices({ openItem, choice, changeChoice }) {
   return (
     <>
-      <h3>Добавки</h3>
+      <h3>Выбирайте:</h3>
       <CheckoutStyleWrap>
-        {toppings.map((item, i) => (
+        {openItem.choices.map((item, i) => (
           <CheckoutStyleLabel key={i}>
-            <CheckoutStyleInput type="checkbox" checked={item.checked} onChange={() => checkToppings(i)} />
-            {item.name}
+            <CheckoutStyleInput type="radio" checked={choice === item} value={item} onChange={changeChoice} />
+            {item}
           </CheckoutStyleLabel>
         ))}
       </CheckoutStyleWrap>
