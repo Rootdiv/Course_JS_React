@@ -4,8 +4,8 @@ export const ButtonCheckout = styled.button`
   display: block;
   margin: 0 auto;
   width: 250px;
+  height: 65px;
   color: #ffffff;
-  padding: 20px 80px;
   font-size: 21px;
   border-color: transparent;
   background-color: #299B01;
