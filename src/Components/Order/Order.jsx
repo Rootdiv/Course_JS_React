@@ -49,7 +49,7 @@ const EmptyList = styled.p`
 export const Order = ({ orders, setOrders, setOpenItem, authentication, logIn }) => {
   const total = orders.reduce((result, order) => totalPriceItems(order) + result, 0);
   const totalCounter = orders.reduce((result, order) => order.count + result, 0);
-  const deleteItem = order => setOrders(orders.filter(item => item !== order));
+  const deleteItem = index => setOrders(orders.filter((item, i) => i !== index));
   return (
     <OrderStyled>
       <OrderTitle>ВАШ ЗАКАЗ</OrderTitle>
