@@ -19,6 +19,8 @@ const Item = styled.li`
   margin-top: 30px;
   margin-right: 30px;
   padding: 15px;
+  border-radius: 10px;
+  overflow: hidden;
   color: #fff;
   z-index: 1;
   &:after {

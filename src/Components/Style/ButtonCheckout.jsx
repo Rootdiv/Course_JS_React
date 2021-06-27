@@ -8,6 +8,7 @@ export const ButtonCheckout = styled.button`
   color: #ffffff;
   font-size: 21px;
   border-color: transparent;
+  border-radius: 5px;
   background-color: #299B01;
   transition-property: color, border-color, background-color;
   transition-duration: 0.3s;

@@ -48,11 +48,12 @@ const LogOut = styled.span`
   font-size: 20px;
   font-weight: 700;
   cursor: pointer;
-  margin-right: 15px;
+  margin: 15px;
+  margin-left: 25px;
 `;
 
 const Figure = styled.figure`
-  margin: 0 30px;
+  margin: 0;
 `;
 
 export const NavBar = ({ authentication, logIn, logOut }) => (
