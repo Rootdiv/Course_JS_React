@@ -73,7 +73,7 @@ export const Order = ({ orders, setOrders, setOpenItem, authentication, logIn })
       </Total>
       <ButtonCheckout
         disabled={orders.length === 0}
-        onClick={authentication ? console.log(orders.length) : logIn}
+        onClick={authentication ? console.log(orders) : logIn()}
       >Оформить</ButtonCheckout>
     </OrderStyled>
   );
