@@ -1,5 +1,8 @@
 {
   "rules": {
+    "goods": {
+      ".read": true
+    },
     "orders": {
       ".write": true
     }

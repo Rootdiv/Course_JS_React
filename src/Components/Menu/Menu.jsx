@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { ListItem } from './ListItem';
 import { Banner } from './Banner';
-import { useFetch } from '../Hooks/useFetch';
+import { useFirebase } from '../Hooks/useFirebase';
 import imgLoader from '../../image/loader.svg';
 import imgError from '../../image/error.png';
 
@@ -21,8 +21,8 @@ const ImgWrap = styled.div`
   text-align: center;
 `;
 
-export const Menu = ({ setOpenItem }) => {
-  const res = useFetch();
+export const Menu = ({ setOpenItem, firebaseDatabase }) => {
+  const res = useFirebase(firebaseDatabase);
   const dbMenu = res.response;
   return (
     <MenuStyled>
