@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { CheckoutStyleWrap, CheckoutStyleLabel, CheckoutStyleInput } from '../Style/CheckoutStyle';
+import { ContextItem } from '../Functions/context';
 
-export function Choices({ openItem, choice, changeChoice }) {
+export const Choices = () => {
+  const { openItem, choices: { choice, changeChoice } } = useContext(ContextItem);
   return (
     <>
       <h3>Выбирайте:</h3>
@@ -15,4 +17,4 @@ export function Choices({ openItem, choice, changeChoice }) {
       </CheckoutStyleWrap>
     </>
   );
-}
+};

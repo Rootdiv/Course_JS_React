@@ -12,7 +12,7 @@ const Item = styled.li`
   position: relative;
   width: 400px;
   height: 155px;
-  background-image: ${({ img }) => `url(${img})`};
+  background-image: ${({ img }) => `url(./${img})`};
   background-position: center;
   background-size: cover;
   font-size: 30px;

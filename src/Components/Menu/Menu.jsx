@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { ListItem } from './ListItem';
 import { Banner } from './Banner';
 import { useFetch } from '../Hooks/useFetch';
 import imgLoader from '../../image/loader.svg';
 import imgError from '../../image/error.png';
+import { Context } from '../Functions/context';
 
 const MenuStyled = styled.main`
   background-color: #ccc;
@@ -21,7 +22,8 @@ const ImgWrap = styled.div`
   text-align: center;
 `;
 
-export const Menu = ({ setOpenItem }) => {
+export const Menu = () => {
+  const { openItem: { setOpenItem } } = useContext(Context);
   const res = useFetch();
   const dbMenu = res.response;
   return (
