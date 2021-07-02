@@ -52,7 +52,10 @@ const Banner = styled.div`
 `;
 
 export const ModalItem = () => {
-  const { orders: { orders, setOrders }, openItem: { openItem, setOpenItem } } = useContext(Context);
+  const {
+    orders: { orders, setOrders },
+    openItem: { openItem, setOpenItem }
+  } = useContext(Context);
   const counter = useCount(openItem);
   const toppings = useTopping(openItem);
   const choices = useChoices(openItem);

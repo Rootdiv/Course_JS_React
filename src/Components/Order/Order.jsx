@@ -32,8 +32,8 @@ const EmptyList = styled.p`
 export const Order = () => {
   const { auth: { authentication, logIn },
     orders: { orders, setOrders },
-    orderConfirm: { setOrderConfirm },
-    openItem: { setOpenItem } } = useContext(Context);
+    orderConfirm: { setOrderConfirm }
+  } = useContext(Context);
   const total = orders.reduce((result, order) => totalPriceItems(order) + result, 0);
   const totalCounter = orders.reduce((result, order) => order.count + result, 0);
   const deleteItem = index => setOrders(orders.filter((item, i) => i !== index));
@@ -48,7 +48,6 @@ export const Order = () => {
               order={order}
               index={index}
               deleteItem={deleteItem}
-              setOpenItem={setOpenItem}
             />)}
           </OrderList> :
           <EmptyList>Список заказов пуст</EmptyList>}
@@ -69,7 +68,9 @@ export const Order = () => {
               }
             }}
           >Оформить</ButtonCheckout>
-        </> : ''}
+        </> :
+        null
+      }
     </OrderStyled>
   );
 };
