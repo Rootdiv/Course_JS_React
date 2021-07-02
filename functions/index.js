@@ -30,7 +30,7 @@ const sendOrderEmail = data => {
             const choices = choice !== 'no choice' ? `&nbsp;${choice}` : '';
             const toppings = topping !== 'no topping' ? `&nbsp;Допы: ${topping.join(', ')}` : '';
             return `<li>${itemName}${choices}${toppings} - ${count} шт., цена - ${price * count} руб.</li>`;
-          })}
+          }).join('\n')}
         </ul>
         <p>Итого: ${data.order.reduce((sum, item) => sum + (item.price * item.count), 0)} руб.</p>
         <small>Ожидайте курьера.</small>
