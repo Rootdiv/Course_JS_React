@@ -4,6 +4,8 @@ import { Overlay, OrderTitle, Total, TotalPrice } from '../Style/ModalStyle';
 import { ButtonCheckout } from '../Style/ButtonCheckout';
 import { totalPriceItems, formatCurrency, projection } from '../Functions/secondaryFunction';
 import { Context } from '../Functions/context';
+import { getDatabase, push, ref, set } from 'firebase/database';
+import { sendMailOrder } from '../Functions/sendMailOrder';
 
 const Modal = styled.div`
   background-color: #ffffff;
@@ -20,28 +22,42 @@ const Text = styled.h3`
 
 const rulesData = {
   itemName: ['name'],
-  price: ['price'],
   count: ['count'],
-  topping: ['topping', arr => arr.filter(obj => obj.checked).map(obj => obj.name),
-    arr => (arr.length ? arr : 'no topping')],
+  topping: [
+    'topping',
+    arr => arr.filter(obj => obj.checked).map(obj => obj.name),
+    arr => (arr.length ? arr : 'no topping'),
+  ],
   choice: ['choice', item => (item ? item : 'no choice')],
+  totalPrice: ['totalPrice'],
 };
 
 const sendOrder = (dataBase, orders, authentication) => {
   const newOrder = orders.map(projection(rulesData));
-  dataBase.ref('orders').push().set({
+  const dataRef = ref(dataBase, 'orders');
+  const newProductRef = push(dataRef);
+  return set(newProductRef, {
     nameClient: authentication.displayName,
     email: authentication.email,
-    order: newOrder
-  });
+    order: newOrder,
+  }).then(() => newProductRef.key);
 };
 
 export const OrderConfirm = () => {
-  const { auth: { authentication },
+  const {
+    auth: { authentication },
     orders: { orders, setOrders },
     orderConfirm: { setOrderConfirm },
-    firebaseDatabase
+    firebaseDatabase,
   } = useContext(Context);
+  const dataBase = getDatabase(firebaseDatabase());
+
+  const handlerSendOrder = () => {
+    sendOrder(dataBase, orders, authentication).then(key => {
+      sendMailOrder(dataBase, key);
+      setOrders([]);
+    });
+  };
 
   const closeModal = event => {
     if (event.target.id === 'confirm') {
@@ -49,33 +65,26 @@ export const OrderConfirm = () => {
     }
   };
 
-  const dataBase = firebaseDatabase();
   const total = orders.reduce((result, order) => totalPriceItems(order) + result, 0);
   return (
     <Overlay id="confirm" onClick={closeModal}>
       <Modal>
         <OrderTitle>{authentication.displayName}</OrderTitle>
-        {orders.length ?
+        {orders.length ? (
           <>
             <Text>Осталось только подтвердить ваш заказ</Text>
             <Total>
               <span>Итого</span>
               <TotalPrice>{formatCurrency(total)}</TotalPrice>
             </Total>
-            <ButtonCheckout
-              onClick={() => {
-                sendOrder(dataBase, orders, authentication);
-                setOrders([]);
-              }}>Подтвердить</ButtonCheckout>
-          </> :
+            <ButtonCheckout onClick={handlerSendOrder}>Подтвердить</ButtonCheckout>
+          </>
+        ) : (
           <>
             <Text>Спасибо за заказ!</Text>
-            <ButtonCheckout onClick={() => setOrderConfirm(false)}>
-              Спасибо
-            </ButtonCheckout>
-
+            <ButtonCheckout onClick={() => setOrderConfirm(false)}>Спасибо</ButtonCheckout>
           </>
-        }
+        )}
       </Modal>
     </Overlay>
   );

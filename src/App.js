@@ -1,6 +1,6 @@
 import React from 'react';
-import firebase from 'firebase/app';
-import 'firebase/auth';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
 import 'firebase/database';
 import { NavBar } from './Components/NavBar/NavBar';
 import { Menu } from './Components/Menu/Menu';
@@ -16,13 +16,13 @@ import { useOrderConfirm } from './Components/Hooks/useOrderConfirm';
 import { Context } from './Components/Functions/context';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCvH574MR1-9yzYyw2R_TW6qPAvVR94RHI",
-  authDomain: "mrdonalds-1216.firebaseapp.com",
-  databaseURL: "https://mrdonalds-1216-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "mrdonalds-1216",
-  storageBucket: "mrdonalds-1216.appspot.com",
-  messagingSenderId: "768265824674",
-  appId: "1:768265824674:web:a49f6fa85c47ea70ba6afb"
+  apiKey: 'AIzaSyAmNrLEDn71i3a3Ulk1n23bjfO59xw7ItY',
+  authDomain: 'mrdonalds-9562021.firebaseapp.com',
+  databaseURL: 'https://mrdonalds-9562021-default-rtdb.firebaseio.com',
+  projectId: 'mrdonalds-9562021',
+  storageBucket: 'mrdonalds-9562021.appspot.com',
+  messagingSenderId: '890743979596',
+  appId: '1:890743979596:web:f8622f4e486d2e48423ee9',
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -35,7 +35,7 @@ function App() {
   useTitle(openItem.openItem);
 
   return (
-    <Context.Provider value={{ auth, openItem, orders, orderConfirm, firebaseDatabase: firebase.database }}>
+    <Context.Provider value={{ auth, openItem, orders, orderConfirm, firebaseDatabase: firebase.app }}>
       <GlobalStyle />
       <NavBar />
       <Order />

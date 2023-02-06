@@ -1,6 +1,6 @@
-/* eslint-disable indent */
 const dbMenu = {
-  burger: [{
+  burger: [
+    {
       name: 'JS Burger',
       img: '/menu/js-burger.png',
       id: 1,
@@ -42,7 +42,8 @@ const dbMenu = {
       toppings: ['Сыр Чеддер', 'Красный лук'],
     },
   ],
-  other: [{
+  other: [
+    {
       name: 'Coka',
       img: '/menu/soda.png',
       id: 1,
@@ -80,9 +81,9 @@ const dbMenu = {
       name: 'Гринч',
       img: '/menu/green-coffee.png',
       id: 6,
-      price: 175.25
+      price: 175.25,
     },
-  ]
+  ],
 };
 
 export default dbMenu;
