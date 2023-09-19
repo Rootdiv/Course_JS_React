@@ -3,7 +3,7 @@ module.exports = {
     {
       name: 'mrdonalds',
       script: 'server.js',
-      watch: '.',
+      watch: true,
       env: {
         HTTP: 'https',
       },
