@@ -1,7 +1,7 @@
 //Сервер обновлённой версии отправки заказа для проекта по курсу Базовый React
 const { readFileSync } = require('fs');
 const sendOrderEmail = require('./nodemailer');
-const protocol = process.env.HTTP || 'http';
+const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
 const { createServer } = require(protocol);
 
 const options = {};
@@ -92,7 +92,7 @@ createServer(options, async (req, res) => {
 })
   // выводим инструкцию, как только сервер запустился...
   .on('listening', () => {
-    if (protocol !== 'https') {
+    if (protocol === 'http') {
       console.log(`Сервер запущен. Вы можете использовать его по адресу http://localhost:${PORT}`);
       console.log('Нажмите CTRL+C, чтобы остановить сервер');
     }
