@@ -5,7 +5,7 @@ module.exports = {
       script: 'server.js',
       watch: true,
       env: {
-        HTTPS: true,
+        PROD: true,
       },
     },
   ],

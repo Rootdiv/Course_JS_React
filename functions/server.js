@@ -1,15 +1,6 @@
 //Сервер обновлённой версии отправки заказа для проекта по курсу Базовый React
-const { readFileSync } = require('fs');
 const sendOrderEmail = require('./nodemailer');
-const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
-const { createServer } = require(protocol);
-
-const options = {};
-if (protocol === 'https') {
-  const certDir = '/etc/nginx/acme.sh';
-  options['key'] = readFileSync(`${certDir}/rootdiv.ru/privkey.pem`);
-  options['cert'] = readFileSync(`${certDir}/rootdiv.ru/fullchain.pem`);
-}
+const { createServer } = require('http');
 
 const PORT = 1216;
 const URI_PREFIX = '/mrdonalds';
@@ -34,7 +25,7 @@ const getJsonData = req =>
   });
 
 // создаём HTTP сервер, переданная функция будет реагировать на все запросы к нему
-createServer(options, async (req, res) => {
+createServer(async (req, res) => {
   // req - объект с информацией о запросе, res - объект для управления отправляемым ответом
 
   // этот заголовок ответа указывает, что тело ответа будет в JSON формате
@@ -92,10 +83,10 @@ createServer(options, async (req, res) => {
 })
   // выводим инструкцию, как только сервер запустился...
   .on('listening', () => {
-    if (protocol === 'http') {
+    if (process.env.PROD !== 'true') {
       console.log(`Сервер запущен. Вы можете использовать его по адресу http://localhost:${PORT}`);
       console.log('Нажмите CTRL+C, чтобы остановить сервер');
     }
   })
   // ...и вызываем запуск сервера на указанном порту
-  .listen(PORT);
+  .listen(PORT, 'localhost');
